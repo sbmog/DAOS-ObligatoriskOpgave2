@@ -1,4 +1,4 @@
-package opgave01;
+package opgave03;
 
 public class Tråd extends Thread {
 

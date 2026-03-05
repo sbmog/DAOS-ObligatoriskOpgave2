@@ -1,4 +1,4 @@
-package opgave01;
+package opgave04;
 
 import java.util.Random;
 
@@ -17,7 +17,7 @@ public class Fælles {
         }
     }
 
-    public void kritiskSection(int max) {
+    public synchronized void kritiskSection(int max) {
         int temp = global;
         tagerRandomTid(max);
         global = temp + 1;

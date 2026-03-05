@@ -1,11 +1,12 @@
-package opgave01;
+package opgave02;
 
 public class Main {
+
     public static void main(String[] args) {
         Fælles fælles = new Fælles();
 
-        Tråd tråd1 = new Tråd("tråd1", fælles);
-        Tråd tråd2 = new Tråd("tråd2", fælles);
+        Tråd tråd1 = new Tråd("tråd1", fælles, 0);
+        Tråd tråd2 = new Tråd("tråd2", fælles, 1);
 
         tråd1.start();
         tråd2.start();

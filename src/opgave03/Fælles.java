@@ -1,9 +1,11 @@
-package opgave01;
+package opgave03;
 
 import java.util.Random;
+import java.util.concurrent.Semaphore;
 
 public class Fælles {
     private int global = 0;
+    private Semaphore semaphore = new Semaphore(1);
 
     public void tagerRandomTid(int max) {
         Random random = new Random();
@@ -18,9 +20,17 @@ public class Fælles {
     }
 
     public void kritiskSection(int max) {
-        int temp = global;
-        tagerRandomTid(max);
-        global = temp + 1;
+        try {
+            semaphore.acquire();
+
+            int temp = global;
+            tagerRandomTid(max);
+            global = temp + 1;
+
+            semaphore.release();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public int getGlobal() {

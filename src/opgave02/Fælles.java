@@ -1,9 +1,12 @@
-package opgave01;
+package opgave02;
 
 import java.util.Random;
 
 public class Fælles {
     private int global = 0;
+
+    private boolean[] flag = new boolean[2];
+    private int turn = 0;
 
     public void tagerRandomTid(int max) {
         Random random = new Random();
@@ -17,17 +20,22 @@ public class Fælles {
         }
     }
 
-    public void kritiskSection(int max) {
+    public void kritiskSection(int id, int max) {
+        int andenId = 1 - id;
+
+        flag[id] = true;
+        turn = andenId;
+        while (flag[andenId] && turn == andenId) ;
+
         int temp = global;
         tagerRandomTid(max);
         global = temp + 1;
+
+        flag[id] = false;
     }
 
     public int getGlobal() {
         return global;
     }
 
-    public void setGlobal(int global) {
-        this.global = global;
-    }
 }
